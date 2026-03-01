@@ -1,4 +1,12 @@
 <?php
+/*
+Run in terminal:
+php -r 'require "0001-two-sum/0001-two-sum.php";
+$s = new Solution();
+$nums=[2,7,11,15];
+$target=9;
+echo json_encode($s->twoSum($nums, $target)).PHP_EOL;'
+*/
 class Solution {
 
     /**
