@@ -4,13 +4,13 @@
 Run in terminal: Sorterd Group Anagrams
 php -r 'require "0049-group-anagrams/0049-group-anagrams.php";
 $s = new Solution();
-$strs = ["eat", "tea", "tan", "ate", "nat", "bat"];
+$strs = ["eat", "tea", "tan", "ate", "nat", "bat", "a", "a", "b", "b", "c"];
 echo json_encode($s->sortGroupAnagrams($strs)).PHP_EOL;'
 
 Run in terminal: Count Group Anagrams
 php -r 'require "0049-group-anagrams/0049-group-anagrams.php";
 $s = new Solution();
-$strs = ["eat", "tea", "tan", "ate", "nat", "bat"];
+$strs = ["eat", "tea", "tan", "ate", "nat", "bat", "a", "b", "c"];
 echo json_encode($s->countGroupAnagrams($strs)).PHP_EOL;'
 */
 class Solution {
@@ -25,7 +25,7 @@ class Solution {
         foreach ($strs as $str) { // Iterate through each string in the input array
             $sortedStr = str_split($str); // Split the string into an array of characters
             sort($sortedStr); // Sort the array of characters
-            $sortedStr = implode('', $sortedStr); // Join the sorted array back into a string
+            $sortedStr = implode('#', $sortedStr); // Join the sorted array back into a string
             if (!isset($hashmap[$sortedStr])) { // Check if the sorted string does not exist in the hashmap
                 $hashmap[$sortedStr] = []; // If it does not exist, initialize an empty array for this sorted string
             }
