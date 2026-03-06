@@ -24,3 +24,35 @@ graph TD
   - Slicing first `k` keys: `O(k)`
 - Space complexity: `O(m)`  
   for the frequency hashmap and keys list (`m` distinct values).
+
+## topKFrequentBucket(nums, k)
+
+```mermaid
+graph TD
+    A["Start: topKFrequentBucket(nums, k)"] --> B["Initialize frequency map = {}"]
+    B --> C{"For each num in nums?"}
+    C -- Yes --> D["Increment frequency of num"]
+    D --> C
+    C -- No --> E["Create buckets array of size n+1"]
+    E --> F{"For each (num, count) in frequency map?"}
+    F -- Yes --> G["Append num to buckets[count]"]
+    G --> F
+    F -- No --> H["Initialize result = []"]
+    H --> I["Iterate count from high to low"]
+    I --> J{"Bucket has values?"}
+    J -- No --> K{"More counts to scan?"}
+    K -- Yes --> I
+    K -- No --> L["Return result"]
+    J -- Yes --> M["Append bucket values into result"]
+    M --> N{"result size == k?"}
+    N -- Yes --> O["Return result"]
+    N -- No --> K
+```
+
+- Time complexity: `O(n)` average  
+  where `n` is the number of input elements.  
+  - Build frequency map: `O(n)`  
+  - Place values into buckets: `O(m)`  
+  - Scan buckets and collect top `k`: `O(n)` in the worst case
+- Space complexity: `O(n)`  
+  (`frequency` map + bucket array + result).
