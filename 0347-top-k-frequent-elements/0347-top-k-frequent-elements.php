@@ -37,26 +37,26 @@ class Solution {
      * @return int[]
      */
     function topKFrequentBucket(array $nums, int $k): array {
-        $frequency = [];
-        foreach ($nums as $num) {
-            $frequency[$num] = isset($frequency[$num]) ? $frequency[$num] + 1 : 1;
+        $frequency = []; // Initialize an empty array to count the frequency of each number
+        foreach ($nums as $num) { // Iterate through the input array
+            $frequency[$num] = isset($frequency[$num]) ? $frequency[$num] + 1 : 1; // Increment the count of the current number in the frequency array
         }
 
-        $buckets = array_fill(0, count($nums) + 1, []);
-        foreach ($frequency as $num => $count) {
-            $buckets[$count][] = (int)$num;
+        $buckets = array_fill(0, count($nums) + 1, []); // Create an array of buckets, where the index represents the frequency and the value is an array of numbers with that frequency
+        foreach ($frequency as $num => $count) { // Iterate through the frequency array
+            $buckets[$count][] = (int)$num; // Add the number to the corresponding bucket based on its frequency
         }
 
-        $result = [];
-        for ($count = count($buckets) - 1; $count >= 0; $count--) {
-            foreach ($buckets[$count] as $num) {
-                $result[] = $num;
-                if (count($result) === $k) {
-                    return $result;
+        $result = [];   // Initialize an empty array to store the result
+        for ($count = count($buckets) - 1; $count >= 0; $count--) { // Iterate through the buckets in reverse order (from highest frequency to lowest)
+            foreach ($buckets[$count] as $num) { // Iterate through the numbers in the current bucket
+                $result[] = $num; // Add the number to the result array
+                if (count($result) === $k) { // If the result array has reached the desired size of k, return the result
+                    return $result; // Return the top k frequent numbers
                 }
             }
         }
 
-        return $result;
+        return $result; // Return the result array, which contains the top k frequent numbers (in case there are fewer than k unique numbers)
     }
 }
